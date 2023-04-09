@@ -38,6 +38,7 @@ public class BasicjavaApplication {
         bitwiseOperatorExample();
         ternaryOperatorExample();
         instanceofExample();
+        controlFlowStatementsExample();
     }
 
     //	변수 예제 메서드
@@ -104,10 +105,10 @@ public class BasicjavaApplication {
         int num2 = 4;
 
         System.out.println("+ 연산자에 의한 결과 : " + (num1 + num2)
-                        + "\n- 연산자에 의한 결과 : " + (num1 - num2)
-                        + "\n* 연산자에 의한 결과 : " + (num1 * num2)
-                        + "\n/ 연산자에 의한 결과 : " + (num1 / num2)
-                        + "% 연산자에 의한 결과 : " + (num1 % num2));
+                + "\n- 연산자에 의한 결과 : " + (num1 - num2)
+                + "\n* 연산자에 의한 결과 : " + (num1 * num2)
+                + "\n/ 연산자에 의한 결과 : " + (num1 / num2)
+                + "% 연산자에 의한 결과 : " + (num1 % num2));
     }
 
     public static void assignmentOperatorExample() {
@@ -117,13 +118,13 @@ public class BasicjavaApplication {
         int num2 = 7;
         int num3 = 7;
 
-        num1 = num1 -3;
+        num1 = num1 - 3;
         num2 -= 3;
-        num3 =- 3; // -3을 num3에 대입하는 연산.
+        num3 = -3; // -3을 num3에 대입하는 연산.
 
-        System.out.println("- 연산자에 의한 결과 : "+ num1
-                    + "\n-= 연산자에 의한 결과 : " + num2
-                    + "\n=- 연산자에 의한 결과 :" + num3);
+        System.out.println("- 연산자에 의한 결과 : " + num1
+                + "\n-= 연산자에 의한 결과 : " + num2
+                + "\n=- 연산자에 의한 결과 :" + num3);
     }
 
     public static void incrementAndDecrementOperatorsExample() {
@@ -149,7 +150,7 @@ public class BasicjavaApplication {
           ④ : 감소 연산이 수행된 후에 덧셈 연산 수행.
           ⑤ : 마지막으로 변수 y에 결괏값의 대입 연산이 수행. (y의 값 : 23)
          */
-        System.out.println("x : "+ x + ", y : " + y);
+        System.out.println("x : " + x + ", y : " + y);
     }
 
     public static void relationalOperatorExample() {
@@ -158,8 +159,8 @@ public class BasicjavaApplication {
         char ch1 = 'a';
         char ch2 = 'A';
 
-        System.out.println("== 연산자에 의한 결과 : " + (ch1 == ch2) ); // false
-        System.out.println("> 연산자에 의한 결과 : " + (ch1 > ch2) );   // true
+        System.out.println("== 연산자에 의한 결과 : " + (ch1 == ch2)); // false
+        System.out.println("> 연산자에 의한 결과 : " + (ch1 > ch2));   // true
         // 아스키코드(ASCII)에서 'A'는 10진수 65로 나타내며, 'a'는 10진수 97로 나타냄.
         // 따라서 두 문자를 비교하면 'a'가 더 크다는 결과가 나오게 됨.
         // *모든 영문 대문자는 아스키 코드 값은 모든 영문 소문자보다 작은 값을 가짐.
@@ -179,8 +180,8 @@ public class BasicjavaApplication {
         result2 = (ch2 < 'A') || (ch2 < 'Z'); // (66 < 65) || (66 < 90) == false || true == true
 
         System.out.println("&& 연산자에 의한 결과 : " + result1
-                        + "\n||연산자에 의한 결과 : " + result2
-                       + "\n! 연산자에 의한 결과 : " + !result2); // !result2 == !true == false
+                + "\n||연산자에 의한 결과 : " + result2
+                + "\n! 연산자에 의한 결과 : " + !result2); // !result2 == !true == false
     }
 
     public static void bitwiseOperatorExample() {
@@ -199,10 +200,10 @@ public class BasicjavaApplication {
         int y = -8; // -8 = 11111000(2) (2의 보수)
 
         System.out.println("~ 연산자에 의한 결과 : " + ~x
-                         + "\n<< 2 연산자에 의한 결과 : " + (x << 2)
-                         + "\n>> 2 연산자에 의한 결과 : " + (y >> 2)
-                         + "\n>>> 2 연산자에 의한 결과 : " + (x >>> 2)
-                         + "\n>>> 2 연산자에 의한 결과 : " + (y >>> 2));
+                + "\n<< 2 연산자에 의한 결과 : " + (x << 2)
+                + "\n>> 2 연산자에 의한 결과 : " + (y >> 2)
+                + "\n>>> 2 연산자에 의한 결과 : " + (x >>> 2)
+                + "\n>>> 2 연산자에 의한 결과 : " + (y >>> 2));
         /*
         * ~x는 x 값인 8의 1의 보수를 반환하므로, 피연산자의 부호만 반대로 변경됨.
         * x << 2는 2만큼 피연산자의 모든 비트가 왼쪽으로 이동하고 새로 생기는 오른쪽 비트들은 0으로 채워짐.
@@ -215,9 +216,9 @@ public class BasicjavaApplication {
 
     public static void ternaryOperatorExample() {
         /*삼항 연산자는 자바에서 유일하게 피연산자를 3개나 가지는 조건 연산자임.
-        *   조건식 ? 반환값1 : 반환값2
-        * 물음표(?) 앞의 조건식에 따라 결과 값이 true면 반환값1을 반환하고, 결과 값이 false면 반환값2를 반환함.
-        */
+         *   조건식 ? 반환값1 : 반환값2
+         * 물음표(?) 앞의 조건식에 따라 결과 값이 true면 반환값1을 반환하고, 결과 값이 false면 반환값2를 반환함.
+         */
         int x = 5;
         int y = 7;
         int result = 0;
@@ -240,6 +241,217 @@ public class BasicjavaApplication {
         System.out.println(a instanceof B); // false
         System.out.println(b instanceof B); // true
     }
-    static class A {}
-    static class B extends A {}
+
+    static class A {
+    }
+
+    static class B extends A {
+    }
+
+    /*제어문 : 조건문, 반복문*/
+    public static void controlFlowStatementsExample() {
+//        조건문(Conditional Statements) : 주어진 조건식의 결과에 따라 별도의 명령을 수행하도록 제어하는 명령문.
+        char ch = 'i';
+        char m = 'A';
+
+        // if문을 사용하여, 해당 문자가 영문 소문자인지를 확인하는 예제
+        if (ch >= 'a' && ch <= 'z')
+            System.out.println("해당 문자는 영문 소문자입니다."); // if문에서 실행될 명령문이 한 줄 뿐이라면 중괄호({})를 생략할 수 있음.
+
+        // if-else문을 사용하여, 해당 문자가 영문 소문자인지 아닌지를 확인하는 예제
+        if (m >= 'a' && m <= 'z') {
+            System.out.println("해당 문자는 영문 소문자입니다.");
+        } else {
+            System.out.println("해당 문자는 영문 소문자가 아닙니다.");
+        } // if-else문에서도 실행될 명령문이 한 줄 뿐이라면 {중괄호} 생략 가능.
+
+        // if-else if-else문
+        if (m > 'a' && m <= 'z') {
+            System.out.println("해당 문자는 영문 소문자입니다.");
+        } else if (m >= 'A' && m <= 'Z') {
+            System.out.println("해당 문자는 영문 대문자입니다.");
+        } else {
+            System.out.println("해당 문자는 영문자가 아닙니다.");
+        }
+
+        /* switch 문 : if-else문 보다 가독성이 더 좋으며, 컴파일러가 최적화를 쉽게 할 수 있어 속도 또한 빠른 편임.
+         * switch문의 조건 값으로는 int형으로 승격할 수 있는 값(byte형, short형, char형, int형의 변수나 리터럴)만이 사용될 수 있음.
+         * 또한 이러한 기본 타입에 해당하는 데이터를 객체로 포장해 주는 래퍼 클래스 중에서 위에 해당하는 Byte, Short, Character, Integer 클래스의 객체도 사용 가능.
+         * enum 키워드를 사용한 열거체와 String 클래스의 객체도 사용 가능.
+         * default절은 조건 값이 위에 나열된 어떠한 case절에도 해당하지 않을 때만 실행됨.
+         * 각 case절 및 default절은 반드시 break 키워드를 포함하고 있어야 함.*/
+
+        switch (ch) { // switch문을 사용하여, 해당 문자가 영문자 모음인지 확인하는 예제
+            case 'a':
+                System.out.println("해당 문자는 'A'입니다.");
+                break;
+            case 'e':
+                System.out.println("해당 문자는 'E'입니다.");
+                break;
+            case 'i':
+                System.out.println("해당 문자는 'I'입니다.");
+                break;
+            case 'o':
+                System.out.println("해당 문자는 'O'입니다.");
+                break;
+            case 'u':
+                System.out.println("해당 문자는 'U'입니다.");
+                break;
+            default:
+                System.out.println("해당 문자는 모음이 아닙니다.");
+                break;
+        }
+
+        switch (m) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                System.out.println("해당 문자는 소문자 모음입니다.");
+                break;
+            case 'A' :
+            case 'E' :
+            case 'I' :
+            case 'O' :
+            case 'U' :
+                System.out.println("해당 문자는 대문자 모음입니다.");
+                break;
+            default:
+                System.out.println("해당 문자는 모음이 아닙니다.");
+                break;
+        }
+
+//         반복문(Iteration Statements) : while문, do-while문, for문, Enhanced for문
+        //while문 : 우선 조건식이 참인지를 판단하여, 조건식의 결과가 참인 동안 반복적으로 실행하고자 하는 명령문.
+        int i = 0;
+        while (i < 5) {
+            System.out.println("while문이 " + (i + 1) + "번째 반복 실행중입니다.");
+            i++; // 이부분을 삭제하면 무한 루프에 빠지게 됨.
+                 // 무한 루프에 빠진 프로그램은 영원히 종료되지 않으므로 특별히 의도한 경우가 아니라면 반드시 피해야 함.
+        }
+        System.out.println("while문이 종료된 후 변수 i의 값은 " + i + "입니다.");
+
+        // do-while문 : 우선 루프를 한 번 실행한 후에 조건식을 검사함. 조건식의 결과와 상관없이 무조건 한 번은 루프를 실행함.
+        int x = 1;
+        int y = 1;
+
+        while (x < 1) {
+            System.out.println("while문이 " + x + "번째 반복 실행중입니다."); // 조건식 먼저 판단하기 때문에 결과 값이 false라 이 문장은 출력되지 않음.
+            x++; // 이 부분을 삭제하면 무한 루프에 빠지게 됨.
+        }
+        System.out.println("while문이 종료된 후 변수 x의 값은 " + x + "입니다.");
+
+        do {
+            System.out.println("do-while문이 " + x + "번째 반복 실행중입니다.");
+            y++; // 이 부분을 삭제하면 무한 루프에 빠지게 됨.
+        } while (y < 1);
+        System.out.println("do-while 문이 종료된 후 변수 y의 값은 " + y + "입니다.");
+
+        // for 문 : 자체적으로 초기식, 조건식, 증감식을 모두 포함하고 있는 반복문.
+        for (i=0; i<5; i++) {
+            System.out.println("for문이 " + (i + 1) + "번째 반복 실행중입니다.");
+        }
+        System.out.println("for문이 종료된 후 변수 i의 값은 " + i + "입니다.");
+
+        for (int k = 0; k < 3; k++) {
+            System.out.println("for문이 " + (k + 1) + "번째 반복 실행중입니다.");
+        }
+        for (int k = 0; k < 3; k++) {
+            System.out.println("for문이 " + (k + 1) + "번째 반복 실행중입니다.");
+        }
+        // 위의 예제에서 반복문을 종료시키기 위한 변수로 k라는 이름의 int형 변수를 한 프로그램에서 두 번이 선언하고 있음.
+        // 두 번이나 선언해도 컴파일 오류가 발생하지 않는 이유는 for문이 종료되면 for문의 초기식에서 사용된 변수는 자동으로 소멸하기 때문.
+
+        // Enhanced for문 : 명시한 배열이나 컬렉션의 길이만큼 반복되어 실행됨.
+        //                  루프마다 각 요소는 명시한 변수의 이름으로 저장되며, 명령문에서는 이 변수를 사용하여 각 요소를 참조할 수 있음.
+        //                  요소를 참조할 때만 사용하는 것이 좋으며, 요소의 값을 변경하는 작업에는 적합하지 않음.
+        // for (타입변수이름 : 배열(or 컬렉션이름)) { 배열의 길이만큼 반복적으로 실행하고자 하는 명령문;}
+        int[] arr = new int[]{1, 2, 3, 4, 5};
+
+        for (int e : arr) {
+            System.out.print(e + " ");
+        }
+        System.out.println();
+
+        //다음 예제는 for문과 Enhanced for문을 이용하여 모든 배열 요소에 10을 더하는 예제
+        int[] arr1 = new int[]{1, 2, 3, 4, 5};
+        int[] arr2 = new int[]{1, 2, 3, 4, 5};
+
+        for (int j = 0; j < arr1.length; j++) {
+            arr1[j] += 10; // 각 배열 요소에 10을 더함.
+        }
+
+        for (int e : arr2) {
+            e += 10; // 각 배열 요소에 10을 더함.
+        }
+
+        for (int j = 0; j < arr1.length; j++) {
+            System.out.printf(arr1[j] + " "); // 11 12 13 14 15
+        } // 이렇게 for문을 사용하면, 각 배열 요소의 값을 쉽게 변경할 수 있음.
+        System.out.println();
+
+        for (int j = 0; j < arr2.length; j++) {
+            System.out.printf(arr2[j] + " "); // 1 2 3 4 5
+        } // Enhanced for문을 이용해 각 배열 요소에 10을 더하고 출력해보면, 원본 배열에는 아무런 변화가 없음을 알 수 있음.
+          // Enhanced for문 내부에서 사용되는 배열 요소는 배열 요소 그 자체가 아닌 배열 요소의 복사본임.
+          // 따라서 Enhanced for 문에서 배열 요소의 값을 변경해도 원본 배열에는 아무런 영향을 주지 못함.
+        System.out.println();
+
+//        기타 제어문
+        // 루프의 제어 : 일반적으로 조건식의 검사를 통해 루프로 진입하면, 다음 조건식을 검사하기 전까지 루프 안에 있는 모든 명령문을 실행함.
+        //             하지만 continue문과 break문은 이러한 일반적인 루프의 흐름을 사용자가 직접 제어할 수 있도록 도와줌.
+
+        // continue문 : 루프 내에서 사용하여 해당 루프의 나머지 부분을 건너뛰고, 바로 다음 조건식의 판단으로 넘어가게 해줌.
+        //              보통 반복문 내에서 특정 조건에 대한 예외 처리를 하고자 할 때 자주 사용.
+
+        // 1부터 100까지의 정수 중에서 5의 배수와 7의 배수를 모두 출력하는 예제
+        for (int j = 1; j <= 100; j++) {
+            if (i % 5 == 0 || i % 7 == 0) {
+                System.out.println(j);
+            }else {
+                continue;
+            }
+        }
+
+        // break문 : 루프 내에서 사용하여 해당 반복문을 완전히 종료시킨 뒤, 반복문 바로 다음에 위치한 명령문을 실행함.
+        //           즉, 루프 내에서 조건식의 판단 결과와 상관없이 반복문을 완전히 빠져나가고 싶을 때 사용.
+
+        // 1부터 100까지의 합을 무한 루프를 통해 구하는 예제
+        int num = 1;
+        int sum = 0;
+
+        while (true) { // 무한 루프
+            sum += num;
+            if (num == 100) {
+                break;
+            }
+
+            num++;
+        }
+        System.out.println("break문을 사용해서 1부터 100까지의 합을 구하는 예제 : " + sum);
+
+       /* 이름을 가지는 반복문 (Break with Label)
+       * 일반적인 break 문은 단 하나의 반복문만을 빠져나가게 해줌.
+       * 여러 반복문이 중첩된 상황에서 한 번에 모든 반복문을 빠져나가거나, 특정 반복문까지만 빠져나가고 싶을 때는 다른 방법을 사용해야 함.
+         이 때 사용할 수 있는 방법이 바로 반복문에 이름(label)을 설정하는 것.
+       * 가장 바깥쪽 반복문이나 빠져나가고 싶은 특정 반복문에 이름을 설정한 후, break 키워드 다음에 해당 이름을 명시하면 됨.
+         그러면 해당 break 키워드는 현재 반복문이 아닌 해당 이름의 반복문 바로 다음으로 프로그램의 실행을 옮겨줌.
+       * 단, 이때 이름(label)은 가리키고자 하는 반복문의 키워드 바로 앞에 위치해야 함.
+       * 이름과 반복문의 키워드 사이에 명령문이 존재하면, 자바 컴파일러는 오류를 발생시킴.
+       * 반복문을 가리키는 이름(label)은 break 문이나 continue 문에만 사용 가능.
+       * */
+
+        System.out.println("구구단 2단부터 4단까지 출력하는 예제 : ");
+        allLoop :
+        for (int k = 2; k < 10; k++) {
+            for (int j = 2; j < 10; j++) {
+                if (k == 5) { // 변수 k의 값이 5가 되는 순간, 해당 프로그램의 제어는 2개의 for문을 모두 빠져나와 종료됨.
+                    break allLoop;
+                }
+                System.out.println(k + " * " + j + " = " + (k * j) );
+            }
+        }
+
+    }
 }
