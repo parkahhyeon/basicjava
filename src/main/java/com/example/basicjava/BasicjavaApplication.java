@@ -3,6 +3,8 @@ package com.example.basicjava;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class BasicjavaApplication {
 
@@ -39,6 +41,10 @@ public class BasicjavaApplication {
         ternaryOperatorExample();
         instanceofExample();
         controlFlowStatementsExample();
+        arrayExample();
+        multiDimensionalArrayExample();
+        dynamicArrayExample();
+        arrayUtilizationExample();
     }
 
     //	변수 예제 메서드
@@ -104,11 +110,7 @@ public class BasicjavaApplication {
         int num1 = 8;
         int num2 = 4;
 
-        System.out.println("+ 연산자에 의한 결과 : " + (num1 + num2)
-                + "\n- 연산자에 의한 결과 : " + (num1 - num2)
-                + "\n* 연산자에 의한 결과 : " + (num1 * num2)
-                + "\n/ 연산자에 의한 결과 : " + (num1 / num2)
-                + "% 연산자에 의한 결과 : " + (num1 % num2));
+        System.out.println("+ 연산자에 의한 결과 : " + (num1 + num2) + "\n- 연산자에 의한 결과 : " + (num1 - num2) + "\n* 연산자에 의한 결과 : " + (num1 * num2) + "\n/ 연산자에 의한 결과 : " + (num1 / num2) + "% 연산자에 의한 결과 : " + (num1 % num2));
     }
 
     public static void assignmentOperatorExample() {
@@ -122,9 +124,7 @@ public class BasicjavaApplication {
         num2 -= 3;
         num3 = -3; // -3을 num3에 대입하는 연산.
 
-        System.out.println("- 연산자에 의한 결과 : " + num1
-                + "\n-= 연산자에 의한 결과 : " + num2
-                + "\n=- 연산자에 의한 결과 :" + num3);
+        System.out.println("- 연산자에 의한 결과 : " + num1 + "\n-= 연산자에 의한 결과 : " + num2 + "\n=- 연산자에 의한 결과 :" + num3);
     }
 
     public static void incrementAndDecrementOperatorsExample() {
@@ -179,9 +179,7 @@ public class BasicjavaApplication {
         result1 = (ch1 > 'a') && (ch1 < 'z'); // (98 > 97) && (98 < 122) == true && true == true
         result2 = (ch2 < 'A') || (ch2 < 'Z'); // (66 < 65) || (66 < 90) == false || true == true
 
-        System.out.println("&& 연산자에 의한 결과 : " + result1
-                + "\n||연산자에 의한 결과 : " + result2
-                + "\n! 연산자에 의한 결과 : " + !result2); // !result2 == !true == false
+        System.out.println("&& 연산자에 의한 결과 : " + result1 + "\n||연산자에 의한 결과 : " + result2 + "\n! 연산자에 의한 결과 : " + !result2); // !result2 == !true == false
     }
 
     public static void bitwiseOperatorExample() {
@@ -199,11 +197,7 @@ public class BasicjavaApplication {
         int x = 8;
         int y = -8; // -8 = 11111000(2) (2의 보수)
 
-        System.out.println("~ 연산자에 의한 결과 : " + ~x
-                + "\n<< 2 연산자에 의한 결과 : " + (x << 2)
-                + "\n>> 2 연산자에 의한 결과 : " + (y >> 2)
-                + "\n>>> 2 연산자에 의한 결과 : " + (x >>> 2)
-                + "\n>>> 2 연산자에 의한 결과 : " + (y >>> 2));
+        System.out.println("~ 연산자에 의한 결과 : " + ~x + "\n<< 2 연산자에 의한 결과 : " + (x << 2) + "\n>> 2 연산자에 의한 결과 : " + (y >> 2) + "\n>>> 2 연산자에 의한 결과 : " + (x >>> 2) + "\n>>> 2 연산자에 의한 결과 : " + (y >>> 2));
         /*
         * ~x는 x 값인 8의 1의 보수를 반환하므로, 피연산자의 부호만 반대로 변경됨.
         * x << 2는 2만큼 피연산자의 모든 비트가 왼쪽으로 이동하고 새로 생기는 오른쪽 비트들은 0으로 채워짐.
@@ -310,11 +304,11 @@ public class BasicjavaApplication {
             case 'u':
                 System.out.println("해당 문자는 소문자 모음입니다.");
                 break;
-            case 'A' :
-            case 'E' :
-            case 'I' :
-            case 'O' :
-            case 'U' :
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
                 System.out.println("해당 문자는 대문자 모음입니다.");
                 break;
             default:
@@ -328,7 +322,7 @@ public class BasicjavaApplication {
         while (i < 5) {
             System.out.println("while문이 " + (i + 1) + "번째 반복 실행중입니다.");
             i++; // 이부분을 삭제하면 무한 루프에 빠지게 됨.
-                 // 무한 루프에 빠진 프로그램은 영원히 종료되지 않으므로 특별히 의도한 경우가 아니라면 반드시 피해야 함.
+            // 무한 루프에 빠진 프로그램은 영원히 종료되지 않으므로 특별히 의도한 경우가 아니라면 반드시 피해야 함.
         }
         System.out.println("while문이 종료된 후 변수 i의 값은 " + i + "입니다.");
 
@@ -349,7 +343,7 @@ public class BasicjavaApplication {
         System.out.println("do-while 문이 종료된 후 변수 y의 값은 " + y + "입니다.");
 
         // for 문 : 자체적으로 초기식, 조건식, 증감식을 모두 포함하고 있는 반복문.
-        for (i=0; i<5; i++) {
+        for (i = 0; i < 5; i++) {
             System.out.println("for문이 " + (i + 1) + "번째 반복 실행중입니다.");
         }
         System.out.println("for문이 종료된 후 변수 i의 값은 " + i + "입니다.");
@@ -394,8 +388,8 @@ public class BasicjavaApplication {
         for (int j = 0; j < arr2.length; j++) {
             System.out.printf(arr2[j] + " "); // 1 2 3 4 5
         } // Enhanced for문을 이용해 각 배열 요소에 10을 더하고 출력해보면, 원본 배열에는 아무런 변화가 없음을 알 수 있음.
-          // Enhanced for문 내부에서 사용되는 배열 요소는 배열 요소 그 자체가 아닌 배열 요소의 복사본임.
-          // 따라서 Enhanced for 문에서 배열 요소의 값을 변경해도 원본 배열에는 아무런 영향을 주지 못함.
+        // Enhanced for문 내부에서 사용되는 배열 요소는 배열 요소 그 자체가 아닌 배열 요소의 복사본임.
+        // 따라서 Enhanced for 문에서 배열 요소의 값을 변경해도 원본 배열에는 아무런 영향을 주지 못함.
         System.out.println();
 
 //        기타 제어문
@@ -409,7 +403,7 @@ public class BasicjavaApplication {
         for (int j = 1; j <= 100; j++) {
             if (i % 5 == 0 || i % 7 == 0) {
                 System.out.println(j);
-            }else {
+            } else {
                 continue;
             }
         }
@@ -443,15 +437,166 @@ public class BasicjavaApplication {
        * */
 
         System.out.println("구구단 2단부터 4단까지 출력하는 예제 : ");
-        allLoop :
+        allLoop:
         for (int k = 2; k < 10; k++) {
             for (int j = 2; j < 10; j++) {
                 if (k == 5) { // 변수 k의 값이 5가 되는 순간, 해당 프로그램의 제어는 2개의 for문을 모두 빠져나와 종료됨.
                     break allLoop;
                 }
-                System.out.println(k + " * " + j + " = " + (k * j) );
+                System.out.println(k + " * " + j + " = " + (k * j));
+            }
+        }
+    }
+
+    public static void arrayExample() {
+//         배열 (array) : **같은 타입**의 여러 변수를 하나의 묶음으로 다루는 것.
+//        타입[] 변수명; // 배열을 선언 (배열을 다루기 위한 참조변수 선언)
+//        변수명 = new 타입[길이];  // 배열을 생성 (실제 저장공간을 생성)
+
+        int[] grade1 = new int[3]; // 길이가 3인 int형 배열의 선언 및 생성
+        int[] grade2 = new int[3]; // 변수 grade2은 배열을 다루는데 필요한 참조변수일 뿐 값을 저장하기 위한 공간은 아님.
+
+        grade1[0] = 85; // 인덱스(index, 배열에서의 위치를 가리키는 숫자)를 이용한 배열의 초기화.
+        grade1[1] = 65; // 인덱스 범위 : 0부터 '배열길이-1'까지.
+        grade1[2] = 90;
+
+        grade2[0] = 85; // 배열의 길이보다 적은 수의 배열 요소만 초기화. 나머지 배열 요소들은 배열의 타입에 맞게 자동으로 초기화 됨.
+
+        for (int i = 0; i < grade2.length; i++) {
+            System.out.print(grade1[i] + " "); //  85 65 90     // index를 이용한 배열로의 접근
+        }
+        System.out.println();
+
+        for (int i = 0; i < grade2.length; i++) {
+            System.out.printf(grade2[i] + " "); // 85 0 0
+        }
+        System.out.println();
+
+        /* 배열의 타입 : char     byte, short, int   long    float    double         boolean    배열, 인스턴스 등
+         *  초 깃 값  : '\u0000'    0                 0L      0.0F    0.0 또는 0.0D    false      null            */
+        int[] grade = new int[3];
+
+        grade[0] = 85;
+        grade[1] = 65;
+        grade[2] = 90;
+
+        // grade[4]라는 해당 배열의 길이를 초과하는 인덱스 사용하면, ArrayIndexOutOfBounds 예외가 발생함.
+//        System.out.println(grade[4]);
+
+        // 배열의 초기화 블록(initialization block) : {}를 사용하여 초깃값을 나열한 것.
+        //  타입[] 배열명 = (new 타입[]){배열요소1, 배열요소2, ..., 배열요소n};
+        int[] gradeInitBlock1 = {70, 90, 80}; // 배열의 선언과 동시에 초기화 방법1
+        int[] gradeInitBlock2 = new int[]{70, 90, 80}; // 배열의 선언과 동시에 초기화 방법2
+        int[] gradeInitBlock3;
+//        gradeInitBlock3 = {70, 90,80};  // 이미 선언된 배열을 이 방법으로 초기화하면 오류 발생.
+        int[] gradeInitBlock4;
+        gradeInitBlock4 = new int[]{70, 90, 80}; // 이미 선언된 배열은 이 방법으로만 초기화 가능.
+//        -> 초기화 블록의 타입과 배열의 타입은 반드시 일치해야 함.
+
+        int[] score = new int[]{85, 65, 90}; // 길이가 3인 int형 배열을 선언과 동시에 초기화.
+        for (int i = 0; i < score.length; i++) {
+            System.out.printf(score[i] + " ");
+        }
+        System.out.println();
+
+        // 배열 요소의 합과 평균을 구하는 예제
+        int[] arrNum = new int[]{85, 65, 90};
+        int sum = 0;
+
+        for (int i = 0; i < arrNum.length; i++) {
+            sum += arrNum[i];
+        }
+        System.out.println("모든 과목에서 받은 점수의 합은 " + sum + "입니다.");
+        System.out.println("이 학생의 평균은 " + (sum / arrNum.length) + "입니다.");
+    }
+
+    public static void multiDimensionalArrayExample() {
+//        다차원 배열 : 2차원 이상의 배열. 배열 요소로 또 따른 배열을 가지는 배열을 의미함.
+//        메모리의 용량이 허용하는 한, 차원의 제한은 없지만, 주로 1, 2차원 배열이 사용되고 3차원 이상은 잘 사용되지 않음.
+//        2차원 배열 (two dimensional array) : 타입[][] 변수명;
+        int[][] arr = new int[2][3];
+
+        int k = 10;
+        for (int i = 0; i < arr.length; i++) { // arr.length는 arr[][]의 배열 요소의 총 개수를 반환.
+            for (int j = 0; j < arr[i].length; j++) {
+                // arr[i].length는 arr의 각 배열 요소인 1차원 배열이 갖고 있는 배열 요소의 총 개수를 반환.
+                arr[i][j] = k; // 인덱스를 이용한 초기화
+                k += 10;
             }
         }
 
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.printf(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // 2차원 배열의 초기화 형태로 초기화하는 예제
+        int[][] arr2 = {{10, 20, 30}, {40, 50, 60}};
     }
+
+    public static void dynamicArrayExample() {
+//        가변 배열 : 행마다 다른 길이의 배열을 저장할 수 있는 배열.
+//        - 2차원 이상의 다차원 배열을 생성할 때 전체 배열 차수 중 마지막 차수의 길이를 지정하지 않고,
+//          추후에 각기 다른 길이의 배열을 생성함으로써 고정된 형태가 아닌 보다 유동적인 가변 배열을 구성할 수 있음.
+        int[][] arr = new int[3][];
+        arr[0] = new int[2];
+        arr[1] = new int[4];
+        arr[2] = new int[1];
+
+        // 가변 배열을 선언과 동시에 초기화 블록으로 초기화하는 예제
+        int[][] arrInitBlock = {{10, 20}, {10, 20, 30, 40}, {10}};
+
+        for (int i = 0; i < arrInitBlock.length; i++) {
+            for (int j = 0; j < arrInitBlock[i].length; j++) {
+                System.out.printf(arrInitBlock[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void arrayUtilizationExample() {
+        // 다양한 방법으로 배열을 복사하는 예제
+        int[] arr1 = new int[]{1, 2, 3, 4, 5};
+        int newLen = 10;
+
+//        1. System 클래스의 arraycopy() 메서드
+        int[] arr2 = new int[newLen];
+        System.arraycopy(arr1, 0, arr2, 0, arr1.length);
+
+        for (int i = 0; i < arr2.length; i++) {
+            System.out.printf(arr2[i] + " ");
+        }
+        System.out.println();
+
+//        2. Arrays 클래스의 copyOf() 메서드
+        int[] arr3 = Arrays.copyOf(arr1, 10);
+
+        for (int i = 0; i < arr3.length; i++) {
+            System.out.printf(arr3[i] + " ");
+        }
+        System.out.println();
+
+//        3. Object 클래스의 clone() 메서드
+        int[] arr4 = (int[]) arr1.clone();
+
+        for (int i = 0; i < arr4.length; i++) {
+            System.out.printf(arr4[i] + " ");
+        }
+        System.out.println();
+
+//        4. for 문과 인덱스를 이용한 복사
+        int[] arr5 = new int[newLen];
+
+        for (int i = 0; i < arr1.length; i++) {
+            arr5[i] = arr1[i];
+        }
+
+        for (int i = 0; i < arr5.length; i++) {
+            System.out.printf(arr5[i] + " ");
+        }
+    }
+
+
 }
