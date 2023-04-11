@@ -45,6 +45,9 @@ public class BasicjavaApplication {
         multiDimensionalArrayExample();
         dynamicArrayExample();
         arrayUtilizationExample();
+        
+        Car myCar = new Car(); // 객체 생성
+        myCar.accelerate(60, 3); //메소드 호출
     }
 
     //	변수 예제 메서드
@@ -596,7 +599,15 @@ public class BasicjavaApplication {
         for (int i = 0; i < arr5.length; i++) {
             System.out.printf(arr5[i] + " ");
         }
+        System.out.println();
     }
 
+    class Car {
+        private int currentSpeed;
+        private int accelerationTime;
 
+        public void accelerate(int speed, int second) {
+            System.out.println(second + "초간 속도를 시속 " + speed + "(으)로 가속함!!");
+        }
+    }
 }
