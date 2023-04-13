@@ -46,7 +46,9 @@ public class BasicjavaApplication {
         dynamicArrayExample();
         arrayUtilizationExample();
         
-        Car myCar = new Car(); // 객체 생성
+//        Car myCar = new Car(); // 객체 생성
+        Car myCar = new Car("아반떼", 2016, "흰색", 200); // 생성자의 호출
+        System.out.println(myCar.getModel()); // 생성자에 의해 초기화 되었는지를 확인함.
         myCar.accelerate(60, 3); //메소드 호출
     }
 
@@ -602,9 +604,30 @@ public class BasicjavaApplication {
         System.out.println();
     }
 
-    class Car {
+    static class Car {
+        private String modelName;
+        private int modelYear;
+        private String color;
+        private int maxSpeed;
         private int currentSpeed;
         private int accelerationTime;
+
+        // 객체를 초기화하는 방법이 여러 개 존재할 경우, 하나의 클래스가 여러 개의 생성자를 가징 수 있음.
+        Car() {} // 기본 생성자 : 어떠한 매개변수도 전달받지 않으며, 기본적으로 아무런 동작도 하지 않음.
+        Car(String modelName) {}    // 매개변수가 없는 생성자 선언
+        Car(String modelName, int modelYear) {}    // 매개변수가 있는 생성자 선언
+        Car(String modelName, int modelYear, String color) {}
+        Car(String modelName, int modelYear, String color, int maxSpeed) {
+            this.modelName = modelName;
+            this.modelYear = modelYear;
+            this.color = color;
+            this.maxSpeed = maxSpeed;
+            this.currentSpeed = 0;
+        } // 클래스의 생성자는 어떠한 반환값도 명시하지 않음!!
+
+        public String getModel() {
+            return this.modelYear + "년식 " + this.modelName + " " + this.color;
+        }
 
         public void accelerate(int speed, int second) {
             System.out.println(second + "초간 속도를 시속 " + speed + "(으)로 가속함!!");
