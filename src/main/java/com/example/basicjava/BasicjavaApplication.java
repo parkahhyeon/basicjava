@@ -62,6 +62,21 @@ public class BasicjavaApplication {
         // CarDefaultConstructor 클래스의 인스턴스의 yourCar는 기본 생성자를 사용하여 생성됨.
         // 하지만 기본 생성자는 아무런 동작도 하지 않으므로, 인스턴스 변수를 클래스 필드에서 바로 초기화.
 
+        display(10);          // 10
+        display(10, 20);   // 200
+        display(10, 3.14); // 13.14
+
+        display(10, 'a');  // 970 = 10 * 97
+         // 자바에서 char형 데이터는 int형 뿐만 아니라 double형으로도 타입 변환될 수 있기 때문에 오버로딩한 메소드의 모호한 호출을 허용하지 않음.
+        // 위와 같은 경우에는 더 작은 표현 범위를 가지는 int형으로 자동 타입 변환하게 됨.
+
+        MethodOverloadingTest overloadingFunc = new MethodOverloadingTest();
+
+        overloadingFunc.display(100);           // 100
+        overloadingFunc.display(100, 50);    // 5000
+        overloadingFunc.display(100, 3.14);  // 103.14
+        overloadingFunc.display(100, 'a');   // 9700
+
     }
 
     //	변수 예제 메서드
@@ -670,4 +685,28 @@ public class BasicjavaApplication {
             return this.modelYear + "년식 " + this.color + " " + this.modelName;
         }
     }
+
+    static void display(int x) { // 전달받은 x를 그대로 출력함.
+        System.out.println(x);
+    }
+    static void display(int x, int y) { // 전달받은 두 정수의 곱을 출력함.
+        System.out.println(x * y);
+    }
+    static void display(int x, double y) { // 전달받은 정수와 실수의 합을 출력함.
+        System.out.println(x + y);
+    }
+
+    static class MethodOverloadingTest {
+        static void display(int x) {
+            System.out.println(x);
+        }
+        static void display(int x, int y) {
+            System.out.println(x * y);
+        }
+        static void display(int x, double y) {
+            System.out.println(x + y);
+        }
+    }
+
+
 }
