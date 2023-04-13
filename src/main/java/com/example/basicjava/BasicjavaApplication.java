@@ -45,11 +45,23 @@ public class BasicjavaApplication {
         multiDimensionalArrayExample();
         dynamicArrayExample();
         arrayUtilizationExample();
-        
-//        Car myCar = new Car(); // 객체 생성
-        Car myCar = new Car("아반떼", 2016, "흰색", 200); // 생성자의 호출
+
+
+        Car myCar = new Car(); // 기본 생성자의 호출
+//        Car myCar = new Car("아반떼", 2016, "흰색", 200); // 생성자의 호출
         System.out.println(myCar.getModel()); // 생성자에 의해 초기화 되었는지를 확인함.
+        // 0년식 null null
+        // 원래는 매개변수를 가지는 Car 클래스를 기본 생성자로 호출하면 자바 컴파일러는 Car 클래스에 별도의 기본 생성자를 추가하지 않으므로
+        // 오류를 발생시킬 것이지만, 여기서는 직접 Car() {} 를 작성해줬기 때문에 0년식 null null 이라는 값이 출력됨.
+        // 오류가 나지 않으려면 조건을 충족시키는 매개변수를 전달해야만 인스턴스가 생성됨.
+
         myCar.accelerate(60, 3); //메소드 호출
+
+        CarDefaultConstructor yourCar = new CarDefaultConstructor(); // 객체 생성. 기본 생성자의 호출
+        System.out.println(yourCar.getModel()); // 2015년식 파란색 소나타
+        // CarDefaultConstructor 클래스의 인스턴스의 yourCar는 기본 생성자를 사용하여 생성됨.
+        // 하지만 기본 생성자는 아무런 동작도 하지 않으므로, 인스턴스 변수를 클래스 필드에서 바로 초기화.
+
     }
 
     //	변수 예제 메서드
@@ -613,17 +625,32 @@ public class BasicjavaApplication {
         private int accelerationTime;
 
         // 객체를 초기화하는 방법이 여러 개 존재할 경우, 하나의 클래스가 여러 개의 생성자를 가징 수 있음.
-        Car() {} // 기본 생성자 : 어떠한 매개변수도 전달받지 않으며, 기본적으로 아무런 동작도 하지 않음.
-        Car(String modelName) {}    // 매개변수가 없는 생성자 선언
-        Car(String modelName, int modelYear) {}    // 매개변수가 있는 생성자 선언
-        Car(String modelName, int modelYear, String color) {}
+//        Car() {} // 기본 생성자 : 어떠한 매개변수도 전달받지 않으며, 기본적으로 아무런 동작도 하지 않음.
+        Car() { // 매개변수를 가지지 않는 이 생성자는 내부에서 this() 메소드를 이용하여 매개변수를 가지는 생성자를 호출함.
+            this("소나타", 2012, "검정색", 160); // 다른 생성자를 호출함.
+        }
+
+        Car(String modelName) {
+        }    // 매개변수가 없는 생성자 선언
+
+        Car(String modelName, int modelYear) {
+        }    // 매개변수가 있는 생성자 선언
+
+        Car(String modelName, int modelYear, String color) {
+        }
+
         Car(String modelName, int modelYear, String color, int maxSpeed) {
-            this.modelName = modelName;
+            // 4개의 매개변수를 갖는 생성자 정의.
+            // 따라서 자바 컴파일러는 Car 클래스에 별도의 기본 생성자를 추가하지 않을 것임.
+
+            // 생성자의 매개변수 이름과 인스턴스 변수의 이름이 같을 경우에는 인스턴스 변수 앞에 this 키워드를 붙여 구분해야 함.
+            this.modelName = modelName; // 매개변수를 가지는 이 생성자는 this 참조 변수를 사용하여 인스턴스 변수에 접근하고 있음.
             this.modelYear = modelYear;
             this.color = color;
             this.maxSpeed = maxSpeed;
             this.currentSpeed = 0;
         } // 클래스의 생성자는 어떠한 반환값도 명시하지 않음!!
+
 
         public String getModel() {
             return this.modelYear + "년식 " + this.modelName + " " + this.color;
@@ -631,6 +658,16 @@ public class BasicjavaApplication {
 
         public void accelerate(int speed, int second) {
             System.out.println(second + "초간 속도를 시속 " + speed + "(으)로 가속함!!");
+        }
+    }
+
+    static class CarDefaultConstructor {
+        private String modelName = "소나타";
+        private int modelYear = 2015;
+        private String color = "파란색";
+
+        public String getModel() {
+            return this.modelYear + "년식 " + this.color + " " + this.modelName;
         }
     }
 }
