@@ -67,7 +67,7 @@ public class BasicjavaApplication {
         display(10, 3.14); // 13.14
 
         display(10, 'a');  // 970 = 10 * 97
-         // 자바에서 char형 데이터는 int형 뿐만 아니라 double형으로도 타입 변환될 수 있기 때문에 오버로딩한 메소드의 모호한 호출을 허용하지 않음.
+        // 자바에서 char형 데이터는 int형 뿐만 아니라 double형으로도 타입 변환될 수 있기 때문에 오버로딩한 메소드의 모호한 호출을 허용하지 않음.
         // 위와 같은 경우에는 더 작은 표현 범위를 가지는 int형으로 자동 타입 변환하게 됨.
 
         MethodOverloadingTest overloadingFunc = new MethodOverloadingTest();
@@ -76,6 +76,11 @@ public class BasicjavaApplication {
         overloadingFunc.display(100, 50);    // 5000
         overloadingFunc.display(100, 3.14);  // 103.14
         overloadingFunc.display(100, 'a');   // 9700
+
+        System.out.println("재귀 호출을 사용하지 않고 1~n까지의 합 : " + sumTest(10));
+        RecursiveCallTest call = new RecursiveCallTest();
+        System.out.println("재귀 호출을 사용한 1~n 까지의 합 : " + RecursiveCallTest.recursiveSum(10));
+
 
     }
 
@@ -689,9 +694,11 @@ public class BasicjavaApplication {
     static void display(int x) { // 전달받은 x를 그대로 출력함.
         System.out.println(x);
     }
+
     static void display(int x, int y) { // 전달받은 두 정수의 곱을 출력함.
         System.out.println(x * y);
     }
+
     static void display(int x, double y) { // 전달받은 정수와 실수의 합을 출력함.
         System.out.println(x + y);
     }
@@ -700,12 +707,35 @@ public class BasicjavaApplication {
         static void display(int x) {
             System.out.println(x);
         }
+
         static void display(int x, int y) {
             System.out.println(x * y);
         }
+
         static void display(int x, double y) {
             System.out.println(x + y);
         }
+    }
+
+    static int sumTest(int n) { // 재귀 호출을 사용하지 않고 만든 메소드.
+        // 직관적으로 그 목적을 바로 알 수 없고, 코드를 해석해야 무슨 목적으로 만든 건지 알 수 있는 메소드.
+        int result = 0;
+
+        for (int i = 1; i <= n; i++) {
+            result += i;
+        }
+        return result;
+    }
+
+    static class RecursiveCallTest { // 재귀 호출을 사용한 1~n 까지 합을 구하기.
+        static int recursiveSum(int n) {
+            if (n == 1) {   // n이 1이면, 1을 반환
+                return 1;
+            }
+            return n + recursiveSum(n - 1);     // n이 1이 아니면, n을 1부터 (n-1)까지의 합과 더한 값을 반환
+        }
+        // 위의 메소드에서 if 문이 존재하지 않으면, 이 프로그램은 실행 직후 스택 오버플로우(Stack Overflow)에 의해 종료될 것임.
+        // 따라서 재귀 호출을 중단하기 위한 조건문을 반드시 포함해야 함.
     }
 
 
