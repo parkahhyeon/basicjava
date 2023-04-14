@@ -81,6 +81,11 @@ public class BasicjavaApplication {
         RecursiveCallTest call = new RecursiveCallTest();
         System.out.println("재귀 호출을 사용한 1~n 까지의 합 : " + RecursiveCallTest.recursiveSum(10));
 
+        SamePackage sp = new SamePackage();
+        System.out.println(sp.sameVar);     // 같은 패키지는 접근 허용
+
+        SameClass sc = new SameClass();
+        System.out.println(sc.protectedVar);
 
     }
 
@@ -737,6 +742,28 @@ public class BasicjavaApplication {
         // 위의 메소드에서 if 문이 존재하지 않으면, 이 프로그램은 실행 직후 스택 오버플로우(Stack Overflow)에 의해 종료될 것임.
         // 따라서 재귀 호출을 중단하기 위한 조건문을 반드시 포함해야 함.
     }
+
+    public static class SameClass {
+        private String var = "같은 클래스만 접근 허용";   // private 필드
+        String defaultVar = "다른 패키지는 접근 불가";    // default 필드
+        protected String protectedVar = "다른 패키지에 속하는 자식 클래스까지 접근 허용";   // protected 필드
+        private String getVar() {   // private 메서드
+            return this.var;
+        }
+    }
+
+    public class Everywhere {
+        public String var = "누구든지 접근 허용";   // public 필드
+        public String getVar() {    // public 메서드
+            return this.var;
+        }
+    }
+
+    public static class SamePackage {
+        String sameVar = "같은 패키지는 접근 허용"; // default 필드
+    }
+
+
 
 
 
