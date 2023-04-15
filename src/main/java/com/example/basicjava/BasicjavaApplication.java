@@ -1,9 +1,13 @@
 package com.example.basicjava;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class BasicjavaApplication {
@@ -16,7 +20,6 @@ public class BasicjavaApplication {
     public static void main(String[] args) {
         SpringApplication.run(BasicjavaApplication.class, args);
         new HelloWorld().helloworld();
-
         //Literal : varLong 리터럴 값 = 123456789l 자체 값을 의미.
         long varLong = 123456789L; // 생략가능하지만 써주기
         float varFloat = 8.9F; // 리터럴 F 또는 f는 생략 불가.
@@ -145,7 +148,7 @@ public class BasicjavaApplication {
         System.out.println("강제형변환 미적용 : " + (num1 / num2) + " / 강제 형변환 적용 : " + ((double) num1 / num2));
     }
 
-    /*연산자(Operator)*/
+    /* 연산자(Operator) Start */
     public static void arithmeticOperatorExample() {
 //		산술 연산자 : 사칙연산. + - * / %(나머지)
 //		두 개의 피연산자를 가지는 이항 연산자이며, 피연산자들의 결합 방향은 왼쪽에서 오른쪽임.
@@ -269,19 +272,23 @@ public class BasicjavaApplication {
         * [인스턴스이름] instanceof [클래스 또는 인터페이스 이름]
         * 왼쪽 피연산자인 인스턴스가 오른쪽 피연산자인 클래스나 인터페이스로부터 생성되었으면 true를 반환하고, 그렇지 않으면 false를 반환함.     */
 
-        A a = new A();
-        B b = new B();
+        Animal dog = new Animal();
+        Robot robot = new Robot();
 
-        System.out.println(a instanceof A); // true
-        System.out.println(b instanceof A); // true
-        System.out.println(a instanceof B); // false
-        System.out.println(b instanceof B); // true
+        System.out.println(dog instanceof Animal); // true
+        System.out.println(robot instanceof Animal); // true
+        System.out.println(dog instanceof Robot); // false
+        System.out.println(robot instanceof Robot); // true
+    }
+    /* 연산자(Operator) End */
+
+    static class Animal {
+        String hand = "";
+        String foot = "";
     }
 
-    static class A {
-    }
-
-    static class B extends A {
+    static class Robot extends Animal {
+        String elec = "";
     }
 
     /*제어문 : 조건문, 반복문*/
@@ -291,9 +298,9 @@ public class BasicjavaApplication {
         char m = 'A';
 
         // if문을 사용하여, 해당 문자가 영문 소문자인지를 확인하는 예제
-        if (ch >= 'a' && ch <= 'z')
+        if (ch >= 'a' && ch <= 'z') {
             System.out.println("해당 문자는 영문 소문자입니다."); // if문에서 실행될 명령문이 한 줄 뿐이라면 중괄호({})를 생략할 수 있음.
-
+        }
         // if-else문을 사용하여, 해당 문자가 영문 소문자인지 아닌지를 확인하는 예제
         if (m >= 'a' && m <= 'z') {
             System.out.println("해당 문자는 영문 소문자입니다.");
@@ -336,6 +343,10 @@ public class BasicjavaApplication {
             default:
                 System.out.println("해당 문자는 모음이 아닙니다.");
                 break;
+        }
+
+        if (m == 'a' || m == 'e' || m == 'i' || m == 'o' || m == 'u' ) {
+            System.out.println("해당 문자는 소문자 모음입니다.");
         }
 
         switch (m) {
@@ -406,9 +417,39 @@ public class BasicjavaApplication {
         int[] arr = new int[]{1, 2, 3, 4, 5};
 
         for (int e : arr) {
+            // int e = arr[0];
+            // int e = arr[1];
             System.out.print(e + " ");
         }
         System.out.println();
+
+        List<House> housesList = new ArrayList<House>();
+        House house1 = new House();
+        house1.setRoom("아현방");
+        house1.setDesk("아현책상");
+        house1.setDoor("아현창문");
+
+        House house2 = new House();
+        house2.setRoom("수진방");
+        house2.setDesk("수진책상");
+        house2.setDoor("수진창문");
+
+        housesList.add(house1);
+        housesList.add(house2);
+
+        for (int h = 0; h < housesList.size(); h++) {
+            House result = new House();
+            result.setRoom(housesList.get(h).getRoom());
+            result.setDesk(housesList.get(h).getDesk());
+            result.setDoor(housesList.get(h).getDoor());
+            System.out.println(result);
+        }
+
+        for (House resultHouse : housesList) {
+            resultHouse.getRoom();
+            resultHouse.getDesk();
+            resultHouse.getDoor();
+        }
 
         //다음 예제는 for문과 Enhanced for문을 이용하여 모든 배열 요소에 10을 더하는 예제
         int[] arr1 = new int[]{1, 2, 3, 4, 5};
@@ -770,21 +811,21 @@ public class BasicjavaApplication {
         }
     }
 
-    class Car {
+   /* class Car {
         static int var;     // 클래스 필드 (static 변수)
         static {            // static 초기화 블록
             // 보통 클래스 필드의 초기화를 진행함.
             {
                 static void brake() {   // 클래스 메서드 (static 메서드)
 
-            }
+                }
             }
         }
     }
 
     abstract class Car {    // 추상 클래스
         abstract void brake();  // 추상 메서드
-    }
+    }*/
 
 
 }
