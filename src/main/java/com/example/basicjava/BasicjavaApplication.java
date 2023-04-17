@@ -827,5 +827,11 @@ public class BasicjavaApplication {
         abstract void brake();  // 추상 메서드
     }*/
 
+    static class FieldExample {
+        // 필드를 선언과 동시에 초기화.
+        static int classVar = 10;   // 클래스(static) 변수의 명시적 초기화
+        int instanceVar = 20;      // instance 변수의 명시적 초기화
+    }
+
 
 }
