@@ -862,6 +862,7 @@ public class BasicjavaApplication {
     static class InitBlockExample {
         static int classVar = 1; // 클래스 변수의 명시적 초기화
         int instanceVar = 10;     // 인스턴스 변수의 명시적 초기화
+
         static {
             classVar = 2;         // 클래스 초기화 블록을 이용한 초기화
             System.out.println("static { } : 클래스 초기화 블럭");
@@ -871,7 +872,7 @@ public class BasicjavaApplication {
             instanceVar = 20;     // 인스턴스 초기화 블록을 이용한 초기화
             System.out.println(" { } : 인스턴스 초기화 블럭");
         }
-        
+
         InitBlockExample() {      // 생성자를 이용한 초기화
             instanceVar = 3;
             System.out.println("클래스명() { } : 생성자");
@@ -887,16 +888,48 @@ public class BasicjavaApplication {
         * */
     }
 
-     static class Parent {
+    static class Parent {
         private int a = 10; // private 필드
         public int b = 20;  // public 필드
+
+        int x = 1000;
+        int num;
+
+        Parent() {      // 기본 생성자 명시적 선언
+            num = 10;
+        }
+
+        Parent(int n) {
+            num = n;
+        }
+
     }
+
     static class Child extends Parent {
         public int c = 30; // public 필드
+        int x = 2000;
+        int m;
+        Child() {
+            super(40);
+            m = 123;
+        }
+
         void display() {
 //            System.out.println(a);  // 상속받은 private 필드 참조
             System.out.println(b);    // 상속받은 public 필드 참조
             System.out.println(c);    // 자식 클래스에서 선언한 public 필드 참조
+
+            System.out.println("지역 변수 : " + x);
+            System.out.println("this 참조 변수 : " + this.x);
+            System.out.println("super 참조 변수 : " + super.x);
+            // int형 변수 x가 부모 클래스인 Parent 클래스에서만 선언되어 있으면, 모두 같은 값을 출력함.
+            // int형 변수 x가 자식 클래스인 Child 클래스에서도 선언되어 있으면, 지역 변수와 this 참조 변수는 자식 클래스에서 대입된 값을 출력하며,
+            // super 참조변수만이 부모 클래스에서 대입된 값을 출력하게 됨.
+
+            System.out.println("변수 num 값 : " + num);    //자동으로 super(); 구문이 삽입되면 변수 num 값은 10,
+                                                        // 주석 super(40); 구문을 주석 처리를 해제하고 실행하면 변수 num 값은 40
+            System.out.println("변수 m 값 : " + m);      //m : 123
         }
     }
+
 }
