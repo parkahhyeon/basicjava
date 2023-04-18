@@ -1,9 +1,7 @@
 package com.example.basicjava;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +48,7 @@ public class BasicjavaApplication {
         arrayUtilizationExample();
 
 
-        Car myCar = new Car(); // 기본 생성자의 호출
+        Car myCar = new Car(); // 기본 생성자의 호출  및 인스턴스 생성
 //        Car myCar = new Car("아반떼", 2016, "흰색", 200); // 생성자의 호출
         System.out.println(myCar.getModel()); // 생성자에 의해 초기화 되었는지를 확인함.
         // 0년식 null null
@@ -59,11 +57,14 @@ public class BasicjavaApplication {
         // 오류가 나지 않으려면 조건을 충족시키는 매개변수를 전달해야만 인스턴스가 생성됨.
 
         myCar.accelerate(60, 3); //메소드 호출
+        System.out.println("인스턴스 초기화 블록을 이용하여 여러 생성자에서 공통된 부분을 분리하는 예제 : "
+                + myCar.getSpeed()); // 인스턴스 메소드의 호출
 
         CarDefaultConstructor yourCar = new CarDefaultConstructor(); // 객체 생성. 기본 생성자의 호출
         System.out.println(yourCar.getModel()); // 2015년식 파란색 소나타
         // CarDefaultConstructor 클래스의 인스턴스의 yourCar는 기본 생성자를 사용하여 생성됨.
         // 하지만 기본 생성자는 아무런 동작도 하지 않으므로, 인스턴스 변수를 클래스 필드에서 바로 초기화.
+
 
         display(10);          // 10
         display(10, 20);   // 200
@@ -89,6 +90,14 @@ public class BasicjavaApplication {
 
         SameClass sc = new SameClass();
         System.out.println(sc.protectedVar);
+
+        System.out.println(InitBlockExample.classVar); // 클래스 변수에 접근
+        System.out.println("InitBlockExample initEx = new InitBlockExample(); ");
+        InitBlockExample initEx = new InitBlockExample();
+
+        System.out.println("InitBlockExample initEx2 = new InitBlockExample(); ");
+        InitBlockExample initEx2 = new InitBlockExample();
+        System.out.println(initEx.instanceVar);
 
     }
 
@@ -345,7 +354,7 @@ public class BasicjavaApplication {
                 break;
         }
 
-        if (m == 'a' || m == 'e' || m == 'i' || m == 'o' || m == 'u' ) {
+        if (m == 'a' || m == 'e' || m == 'i' || m == 'o' || m == 'u') {
             System.out.println("해당 문자는 소문자 모음입니다.");
         }
 
@@ -690,6 +699,14 @@ public class BasicjavaApplication {
         private int currentSpeed;
         private int accelerationTime;
 
+        { // 인스턴스 초기화 블록
+            // 클래스의 모든 생성자에 공통으로 수행돼야 하는 문장들이 있을 때, 이 문장들을 각 생성자마다 써주기 보다는
+            // 아래와 같이 인스턴스 블럭에 넣어주면 코드가 보다 간결해짐.
+            this.currentSpeed = 0;
+            // 이처럼 코드의 중복을 제거하는 것은 코드의 신뢰성을 높여 주고, 오류의 발생가능성을 줄여 준다는 장점이 있음.
+            // 즉, 재사용성을 높이고 중복을 제거하는 것, 이것이 바로 객체지향프로그래밍이 추구하는 궁극적인 목표이다.
+        }
+
         // 객체를 초기화하는 방법이 여러 개 존재할 경우, 하나의 클래스가 여러 개의 생성자를 가징 수 있음.
 //        Car() {} // 기본 생성자 : 어떠한 매개변수도 전달받지 않으며, 기본적으로 아무런 동작도 하지 않음.
         Car() { // 매개변수를 가지지 않는 이 생성자는 내부에서 this() 메소드를 이용하여 매개변수를 가지는 생성자를 호출함.
@@ -716,6 +733,10 @@ public class BasicjavaApplication {
             this.maxSpeed = maxSpeed;
             this.currentSpeed = 0;
         } // 클래스의 생성자는 어떠한 반환값도 명시하지 않음!!
+
+        public int getSpeed() {
+            return currentSpeed;
+        }
 
 
         public String getModel() {
@@ -788,6 +809,7 @@ public class BasicjavaApplication {
         private String var = "같은 클래스만 접근 허용";   // private 필드
         String defaultVar = "다른 패키지는 접근 불가";    // default 필드
         protected String protectedVar = "다른 패키지에 속하는 자식 클래스까지 접근 허용";   // protected 필드
+
         private String getVar() {   // private 메서드
             return this.var;
         }
@@ -795,6 +817,7 @@ public class BasicjavaApplication {
 
     public class Everywhere {
         public String var = "누구든지 접근 허용";   // public 필드
+
         public String getVar() {    // public 메서드
             return this.var;
         }
@@ -806,6 +829,7 @@ public class BasicjavaApplication {
 
     final class Bike {                  // 이 클래스는 상속을 통해 서브 클래스 생성 불가.
         final int VAR = 0;                  // 이 필드는 상수화되어 값 변경 불가.
+
         final void brake() {            // 이 메서드는 오버라이딩을 통해 재정의 불가.
             final double MAX_NUM = 10.2; // 이 지역 변수는 상수화되어 값 변경 불가.
         }
@@ -831,6 +855,35 @@ public class BasicjavaApplication {
         // 필드를 선언과 동시에 초기화.
         static int classVar = 10;   // 클래스(static) 변수의 명시적 초기화
         int instanceVar = 20;      // instance 변수의 명시적 초기화
+    }
+
+    static class InitBlockExample {
+        static int classVar = 1; // 클래스 변수의 명시적 초기화
+        int instanceVar = 10;     // 인스턴스 변수의 명시적 초기화
+        static {
+            classVar = 2;         // 클래스 초기화 블록을 이용한 초기화
+            System.out.println("static { } : 클래스 초기화 블럭");
+        }
+
+        {
+            instanceVar = 20;     // 인스턴스 초기화 블록을 이용한 초기화
+            System.out.println(" { } : 인스턴스 초기화 블럭");
+        }
+        
+        InitBlockExample() {      // 생성자를 이용한 초기화
+            instanceVar = 3;
+            System.out.println("클래스명() { } : 생성자");
+        }
+
+        /*
+        * 클래스변수 classVar 초기화 과정 : 클래스가 처음 메모리에 로딩될 때 차례대로 수행됨.
+           기본값(0) -> 명시적초기화(1) -> 클래스초기화블록(2)
+
+        * 인스턴스변수 instanceVar 초기화 과정 : 인스턴스를 생성할 때 차례대로 수행됨.
+            기본값(classVar: 2, instanceVar: 0) -> 명시적초기화(classVar: 2, instanceVar: 10) ->
+            인스턴스초기화블록(classVar: 2, instanceVar: 20) -> 생성자(classVar: 2, instanceVar: 3)
+        * */
+
     }
 
 
