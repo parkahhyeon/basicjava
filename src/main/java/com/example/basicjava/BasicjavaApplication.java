@@ -99,6 +99,8 @@ public class BasicjavaApplication {
         InitBlockExample initEx2 = new InitBlockExample();
         System.out.println(initEx.instanceVar);
 
+        Child ch = new Child();
+        ch.display();
     }
 
     //	변수 예제 메서드
@@ -883,8 +885,18 @@ public class BasicjavaApplication {
             기본값(classVar: 2, instanceVar: 0) -> 명시적초기화(classVar: 2, instanceVar: 10) ->
             인스턴스초기화블록(classVar: 2, instanceVar: 20) -> 생성자(classVar: 2, instanceVar: 3)
         * */
-
     }
 
-
+     static class Parent {
+        private int a = 10; // private 필드
+        public int b = 20;  // public 필드
+    }
+    static class Child extends Parent {
+        public int c = 30; // public 필드
+        void display() {
+//            System.out.println(a);  // 상속받은 private 필드 참조
+            System.out.println(b);    // 상속받은 public 필드 참조
+            System.out.println(c);    // 자식 클래스에서 선언한 public 필드 참조
+        }
+    }
 }
