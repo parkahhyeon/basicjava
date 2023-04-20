@@ -16,6 +16,7 @@ public class BasicjavaApplication {
 //	final int AGES2023 = 27;
 
     public static void main(String[] args) {
+
         SpringApplication.run(BasicjavaApplication.class, args);
         new HelloWorld().helloworld();
         //Literal : varLong 리터럴 값 = 123456789l 자체 값을 의미.
@@ -57,8 +58,7 @@ public class BasicjavaApplication {
         // 오류가 나지 않으려면 조건을 충족시키는 매개변수를 전달해야만 인스턴스가 생성됨.
 
         myCar.accelerate(60, 3); //메소드 호출
-        System.out.println("인스턴스 초기화 블록을 이용하여 여러 생성자에서 공통된 부분을 분리하는 예제 : "
-                + myCar.getSpeed()); // 인스턴스 메소드의 호출
+        System.out.println("인스턴스 초기화 블록을 이용하여 여러 생성자에서 공통된 부분을 분리하는 예제 : " + myCar.getSpeed()); // 인스턴스 메소드의 호출
 
         CarDefaultConstructor yourCar = new CarDefaultConstructor(); // 객체 생성. 기본 생성자의 호출
         System.out.println(yourCar.getModel()); // 2015년식 파란색 소나타
@@ -98,9 +98,17 @@ public class BasicjavaApplication {
         System.out.println("InitBlockExample initEx2 = new InitBlockExample(); ");
         InitBlockExample initEx2 = new InitBlockExample();
         System.out.println(initEx.instanceVar);
+        System.out.println("-------------------------------------------------------");
+
+        Parent pa = new Parent();
+        pa.display();
 
         Child ch = new Child();
         ch.display();
+        ch.display("자식 클래스 Child 클래스의 오버로딩된 display() 메소드 입니다.");
+
+        Parent paExtends = new Child();
+        paExtends.display();    // Child cp = new Parent();
     }
 
     //	변수 예제 메서드
@@ -903,17 +911,21 @@ public class BasicjavaApplication {
             num = n;
         }
 
-    }
+        void display() {
+            System.out.println("부모 클래스 Parent 클래스의 display() 메소드입니다.");
+        }
 
+    }
     static class Child extends Parent {
         public int c = 30; // public 필드
         int x = 2000;
+
         int m;
+
         Child() {
             super(40);
             m = 123;
         }
-
         void display() {
 //            System.out.println(a);  // 상속받은 private 필드 참조
             System.out.println(b);    // 상속받은 public 필드 참조
@@ -927,9 +939,15 @@ public class BasicjavaApplication {
             // super 참조변수만이 부모 클래스에서 대입된 값을 출력하게 됨.
 
             System.out.println("변수 num 값 : " + num);    //자동으로 super(); 구문이 삽입되면 변수 num 값은 10,
-                                                        // 주석 super(40); 구문을 주석 처리를 해제하고 실행하면 변수 num 값은 40
+            // 주석 super(40); 구문을 주석 처리를 해제하고 실행하면 변수 num 값은 40
             System.out.println("변수 m 값 : " + m);      //m : 123
-        }
-    }
+            System.out.println("-------------");
 
+            System.out.println("자식 클래스 Child 클래스의 오버라이딩된 display() 메소드 입니다.");
+        }
+        void display(String str) {
+            System.out.println(str); // 오버로딩된 display() 메서드
+        }
+
+    }
 }
