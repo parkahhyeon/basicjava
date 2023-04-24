@@ -110,16 +110,27 @@ public class BasicjavaApplication {
         Parent paExtends = new Child();
         paExtends.display();    // Child cp = new Parent();
 
-        System.out.println("<참조 변수의 타입 변환>\n 문법] (변환할_타입의_클래스명) 변환할참조변수\n" +
-                "조건 1. 서로 상속 관계에 있는 클래스 사이에만 타입 변환 가능.\n" +
-                "조건 2.자식 클래스 타입에서 부모 클래스 타입으로의 타입 변환은 생략 가능.\n" +
-                "조건 3. 하지만 부모 클래스 타입에서 자식 클래스 타입으로의 타입 변환은 반드시 명시해야 함.");
-        Parent pa01 = null;
-        Child ch01 = new Child();
-        Parent pa02 = new Parent();
-        Brother br = null;
-        pa01 = ch;  // pa01 = (Parent)ch; 와 같으며, 타입 변환을 생략할 수 있음.
-        br = (Brother) pa02; // 타입 변환을 생략할 수 없음.
+        /*<참조 변수의 다형성>
+        자바에서는 다형성을 위해 부모 클래스 타입의 참조 변수로 자식 클래스 타입의 인스턴스를 참조할 수 있도록 하고 있음.
+        이때 참조 변수가 사용할 수 있는 멤버의 개수가 실제 인스턴스의 멤버 개수보다 같거나 적어야 참조할 수 있음.*/
+        Parent prn = new Parent(); // 다형성 허용 - 특정 타입의 참조 변수로는 당연히 같은 타입의 인스턴스 참조 가능.
+        Child chd = new Child();   // 다형성 허용
+        Parent pChd = new Child();  // 다형성 허용 - 부모 클래스 타입의 참조 변수로도 자식 클래스 타입의 인스턴스를 참조 가능.
+        //             참조 변수가 사용할 수 있는 멤버의 개수가 실제 인스턴스의 멤버 개수보다 적기 때문.
+//        Child cp = new Parent();  // 오류 발생 - 위와 반대의 경우인 자식 클래스 타입의 참조 변수로는 부모 클래스 타입의 인스턴스를 참조 못 함.
+        //           참조 변수가 사용할 수 있는 멤버의 개수가 실제 인스턴스의 멤버 개수보다 많기 떄문.
+        // 클래스는 상속을 통해 확장될 수는 있어도 축소될 수는 없으므로, 자식 클래스에서 사용할 수 있는 멤버의 개수가 언제나 부모 클래스와 같거나 적게 됨.
+
+        System.out.println("\n<참조 변수의 타입 변환>\n  문법] (변환할_타입의_클래스명) 변환할참조변수\n" +
+                            "조건 1. 서로 상속 관계에 있는 클래스 사이에만 타입 변환 가능.\n" +
+                            "조건 2.자식 클래스 타입에서 부모 클래스 타입으로의 타입 변환은 생략 가능.\n" +
+                            "조건 3. 하지만 부모 클래스 타입에서 자식 클래스 타입으로의 타입 변환은 반드시 명시해야 함.");
+//        Parent pa01 = null;
+//        Child ch01 = new Child();
+//        Parent pa02 = new Parent();
+//        Brother br = null;
+//        pa01 = ch;    // pa01 = (Parent)ch; 와 같으며, 타입 변환을 생략할 수 있음.
+//        br = (Brother) pa02; // 타입 변환을 생략할 수 없음.
 //        br = (Brother) ch01; // ERROR! - 직접적인 상속 관계가 아니므로.
     }
 
@@ -516,7 +527,10 @@ public class BasicjavaApplication {
         // 1부터 100까지의 정수 중에서 5의 배수와 7의 배수를 모두 출력하는 예제
         for (int j = 1; j <= 100; j++) {
             if (i % 5 == 0 || i % 7 == 0) {
-                System.out.println(j);
+                System.out.print(j + " ");
+                if (j % 10 == 0) {
+                    System.out.println();
+                }
             } else {
                 continue;
             }
@@ -552,8 +566,9 @@ public class BasicjavaApplication {
 
         System.out.println("구구단 2단부터 4단까지 출력하는 예제 : ");
         allLoop:
-        for (int k = 2; k < 10; k++) {
-            for (int j = 2; j < 10; j++) {
+        for (int k = 2; k < 5; k++) {
+            System.out.println(k + "단 : ");
+            for (int j = 1; j < 10; j++) {
                 if (k == 5) { // 변수 k의 값이 5가 되는 순간, 해당 프로그램의 제어는 2개의 for문을 모두 빠져나와 종료됨.
                     break allLoop;
                 }
@@ -938,16 +953,6 @@ public class BasicjavaApplication {
             m = 123;
         }
 
-        /*<참조 변수의 다형성>
-        자바에서는 다형성을 위해 부모 클래스 타입의 참조 변수로 자식 클래스 타입의 인스턴스를 참조할 수 있도록 하고 있음.
-        이때 참조 변수가 사용할 수 있는 멤버의 개수가 실제 인스턴스의 멤버 개수보다 같거나 적어야 참조할 수 있음.*/
-        Parent pa = new Parent(); // 다형성 허용 - 특정 타입의 참조 변수로는 당연히 같은 타입의 인스턴스 참조 가능.
-        Child ch = new Child();   // 다형성 허용
-        Parent pc = new Child();  // 다형성 허용 - 부모 클래스 타입의 참조 변수로도 자식 클래스 타입의 인스턴스를 참조 가능.
-                                  //             참조 변수가 사용할 수 있는 멤버의 개수가 실제 인스턴스의 멤버 개수보다 적기 때문.
-//        Child cp = new Parent();  // 오류 발생 - 위와 반대의 경우인 자식 클래스 타입의 참조 변수로는 부모 클래스 타입의 인스턴스를 참조 못 함.
-                                     //           참조 변수가 사용할 수 있는 멤버의 개수가 실제 인스턴스의 멤버 개수보다 많기 떄문.
-        // 클래스는 상속을 통해 확장될 수는 있어도 축소될 수는 없으므로, 자식 클래스에서 사용할 수 있는 멤버의 개수가 언제나 부모 클래스와 같거나 적게 됨.
 
         void display() {
 //            System.out.println(a);  // 상속받은 private 필드 참조
