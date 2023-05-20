@@ -819,6 +819,27 @@ public class BasicjavaApplication {
         static void display(int x, double y) {
             System.out.println(x + y);
         }
+
+        // 매개변수명만 다르고, 매개변수의 타입이 같은 경우
+        int add (int a, int b) { return a+b;}
+// Error!!  int add (int x, int y) { return x+y;}
+
+        //반환타입만 다른 경우
+//           int add(int a, int b) { return a+b; }
+// Error!!   long add(int a, int b) { return (long) (a+b); }
+// 매개변수의 타입과 개수가 일치하기 떄문에
+// add(3,3)과 같이 호출하였을 때 어떤 메소드가 호출된 것인지 결정할 수 없기 때문에 오버로딩이 성립하지 않음.
+
+        // int형과 long형 매개변수가 하나씩 선언되었지만, 서로 순서만 다른 경우
+        long add(int a, long b) { return a+b; }
+        long add(long a, int b) { return a+b; }
+        // 이 경우에는 호출 시 매개변수의 값에 의해 호출될 메서드가 구분될 수 있으므로 중복된 메소드 정의가 아닌, 오버로딩으로 간주됨.
+        // 이처럼 단지 매개변수의 순서만을 다르게 하여 오버로딩을 구현하면, 사용자가 매개변수의 순서를 외우지 않아도 되는 장점이 있지만, 오히려 단점이 될 수도 있음.
+        // 예를 들어 add(3,3)과 같이 호출할 경우, 두 메소드 중 어느 메소드가 호출된 것인지 알 수 없기 때문에 메소드를 호출하는 곳에서 컴파일 에러가 발생함!
+
+        //
+
+
     }
 
     static int sumTest(int n) { // 재귀 호출을 사용하지 않고 만든 메소드.
